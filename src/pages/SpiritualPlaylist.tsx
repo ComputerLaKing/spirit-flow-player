@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Play, Pause, Download, Heart, Clock, User } from "lucide-react";
-import { useState } from "react";
+import { Play, Pause, Download, Heart, Clock, User, SkipForward } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import meditation1 from "@/assets/meditation-1.jpg";
 import chanting2 from "@/assets/chanting-2.jpg";
 import healing3 from "@/assets/healing-3.jpg";
@@ -14,6 +14,7 @@ interface Track {
   image: string;
   category: string;
   description: string;
+  audioUrl: string;
 }
 
 const spiritualTracks: Track[] = [
@@ -24,7 +25,8 @@ const spiritualTracks: Track[] = [
     duration: "15:30",
     image: meditation1,
     category: "Meditation",
-    description: "Guided meditation with Tibetan bowls and nature sounds"
+    description: "Guided meditation with Tibetan bowls and nature sounds",
+    audioUrl: "https://www.soundjay.com/misc/sounds/meditation-chime.mp3" // Demo audio
   },
   {
     id: 2,
@@ -33,7 +35,8 @@ const spiritualTracks: Track[] = [
     duration: "21:45",
     image: chanting2,
     category: "Chanting",
-    description: "Traditional Sanskrit mantras for compassion and wisdom"
+    description: "Traditional Sanskrit mantras for compassion and wisdom",
+    audioUrl: "https://www.soundjay.com/misc/sounds/chanting-meditation.mp3" // Demo audio
   },
   {
     id: 3,
@@ -42,20 +45,69 @@ const spiritualTracks: Track[] = [
     duration: "18:20",
     image: healing3,
     category: "Healing",
-    description: "Pure healing tones for chakra alignment and restoration"
+    description: "Pure healing tones for chakra alignment and restoration",
+    audioUrl: "https://www.soundjay.com/misc/sounds/healing-frequencies.mp3" // Demo audio
   },
 ];
 
 const SpiritualPlaylist = () => {
-  const [currentTrack, setCurrentTrack] = useState<number | null>(null);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState<number | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Auto-play next track when current track ends
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handleTrackEnd = () => {
+      playNextTrack();
+    };
+
+    audio.addEventListener('ended', handleTrackEnd);
+    return () => audio.removeEventListener('ended', handleTrackEnd);
+  }, [currentTrackIndex]);
+
+  const playNextTrack = () => {
+    if (currentTrackIndex === null) return;
+    
+    const nextIndex = currentTrackIndex + 1;
+    if (nextIndex < spiritualTracks.length) {
+      setCurrentTrackIndex(nextIndex);
+      setIsPlaying(true);
+      // Audio will start playing due to useEffect below
+    } else {
+      // End of playlist - stop playing
+      setIsPlaying(false);
+      setCurrentTrackIndex(null);
+    }
+  };
+
+  // Handle audio playback when track changes
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio || currentTrackIndex === null) return;
+
+    const currentTrack = spiritualTracks[currentTrackIndex];
+    audio.src = currentTrack.audioUrl;
+    
+    if (isPlaying) {
+      audio.play().catch(console.error);
+    } else {
+      audio.pause();
+    }
+  }, [currentTrackIndex, isPlaying]);
 
   const handlePlayPause = (trackId: number) => {
-    if (currentTrack === trackId) {
+    const trackIndex = spiritualTracks.findIndex(track => track.id === trackId);
+    
+    if (currentTrackIndex === trackIndex) {
+      // Same track - toggle play/pause
       setIsPlaying(!isPlaying);
     } else {
-      setCurrentTrack(trackId);
+      // Different track - start playing this track
+      setCurrentTrackIndex(trackIndex);
       setIsPlaying(true);
     }
   };
@@ -72,6 +124,9 @@ const SpiritualPlaylist = () => {
 
   return (
     <div className="min-h-screen bg-gradient-peaceful">
+      {/* Hidden Audio Element */}
+      <audio ref={audioRef} preload="metadata" />
+      
       {/* Header */}
       <div className="bg-gradient-spiritual text-white py-12 sm:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -152,14 +207,27 @@ const SpiritualPlaylist = () => {
                       variant="spiritual"
                       size="lg"
                       onClick={() => handlePlayPause(track.id)}
-                      className="group flex-1 sm:flex-none min-h-[48px]"
+                      className="group flex-1 sm:flex-none min-h-[48px] relative"
                     >
-                      {currentTrack === track.id && isPlaying ? (
+                      {currentTrackIndex === index && isPlaying ? (
                         <Pause className="w-5 h-5 mr-2" />
                       ) : (
                         <Play className="w-5 h-5 mr-2" />
                       )}
-                      {currentTrack === track.id && isPlaying ? 'Pause' : 'Play'}
+                      {currentTrackIndex === index && isPlaying ? 'Pause' : 'Play'}
+                      {currentTrackIndex === index && (
+                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-spiritual-gold rounded-full animate-pulse" />
+                      )}
+                    </Button>
+
+                    <Button
+                      variant="ghost"
+                      onClick={playNextTrack}
+                      disabled={currentTrackIndex === null || currentTrackIndex >= spiritualTracks.length - 1}
+                      className="min-h-[48px] min-w-[48px]"
+                      title="Next Track"
+                    >
+                      <SkipForward className="w-4 h-4" />
                     </Button>
 
                     <Button
