@@ -73,13 +73,13 @@ const SpiritualPlaylist = () => {
   return (
     <div className="min-h-screen bg-gradient-peaceful">
       {/* Header */}
-      <div className="bg-gradient-spiritual text-white py-16">
-        <div className="max-w-6xl mx-auto px-6">
+      <div className="bg-gradient-spiritual text-white py-12 sm:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center">
-            <h1 className="text-5xl font-bold mb-4">
+            <h1 className="text-3xl sm:text-5xl font-bold mb-4">
               Sacred Sound Library
             </h1>
-            <p className="text-xl opacity-90 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl opacity-90 max-w-2xl mx-auto px-4">
               Immerse yourself in carefully curated spiritual music for meditation, 
               healing, and inner transformation
             </p>
@@ -88,12 +88,12 @@ const SpiritualPlaylist = () => {
       </div>
 
       {/* Playlist Content */}
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
             Featured Tracks
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-sm sm:text-base text-muted-foreground">
             Begin your spiritual journey with these transformative sounds
           </p>
         </div>
@@ -102,12 +102,12 @@ const SpiritualPlaylist = () => {
           {spiritualTracks.map((track, index) => (
             <Card 
               key={track.id} 
-              className="p-6 hover:shadow-spiritual transition-all duration-300 border border-spiritual-purple/10"
+              className="p-4 sm:p-6 hover:shadow-spiritual transition-all duration-300 border border-spiritual-purple/10"
             >
-              <div className="flex flex-col lg:flex-row gap-6">
+              <div className="flex flex-col gap-4 sm:gap-6">
                 {/* Track Image */}
                 <div className="relative group">
-                  <div className="w-full lg:w-32 h-48 lg:h-32 rounded-lg overflow-hidden">
+                  <div className="w-full h-48 sm:h-32 sm:w-32 rounded-lg overflow-hidden mx-auto sm:mx-0">
                     <img 
                       src={track.image} 
                       alt={track.title}
@@ -120,17 +120,17 @@ const SpiritualPlaylist = () => {
                 {/* Track Info */}
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
-                    <div>
+                    <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-xs bg-spiritual-light text-spiritual-purple px-2 py-1 rounded-full font-medium">
                           {track.category}
                         </span>
                         <span className="text-sm text-muted-foreground">#{index + 1}</span>
                       </div>
-                      <h3 className="text-xl font-bold text-foreground mb-1">
+                      <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1">
                         {track.title}
                       </h3>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-sm text-muted-foreground mb-3">
                         <div className="flex items-center gap-1">
                           <User className="w-4 h-4" />
                           {track.artist}
@@ -140,7 +140,7 @@ const SpiritualPlaylist = () => {
                           {track.duration}
                         </div>
                       </div>
-                      <p className="text-muted-foreground">
+                      <p className="text-sm sm:text-base text-muted-foreground">
                         {track.description}
                       </p>
                     </div>
@@ -152,7 +152,7 @@ const SpiritualPlaylist = () => {
                       variant="spiritual"
                       size="lg"
                       onClick={() => handlePlayPause(track.id)}
-                      className="group"
+                      className="group flex-1 sm:flex-none min-h-[48px]"
                     >
                       {currentTrack === track.id && isPlaying ? (
                         <Pause className="w-5 h-5 mr-2" />
@@ -165,12 +165,12 @@ const SpiritualPlaylist = () => {
                     <Button
                       variant="peaceful"
                       onClick={() => toggleFavorite(track.id)}
-                      className={favorites.has(track.id) ? 'text-red-500' : ''}
+                      className={`${favorites.has(track.id) ? 'text-red-500' : ''} min-h-[48px] min-w-[48px]`}
                     >
                       <Heart className={`w-4 h-4 ${favorites.has(track.id) ? 'fill-current' : ''}`} />
                     </Button>
 
-                    <Button variant="ghost">
+                    <Button variant="ghost" className="min-h-[48px] min-w-[48px]">
                       <Download className="w-4 h-4" />
                     </Button>
                   </div>

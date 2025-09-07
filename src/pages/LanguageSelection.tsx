@@ -39,19 +39,19 @@ const LanguageSelection = () => {
             </div>
           </div>
           
-          <h1 className="text-4xl font-bold mb-4 bg-gradient-spiritual bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-spiritual bg-clip-text text-transparent">
             Choose Your Language
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-base sm:text-lg text-muted-foreground px-4">
             Select your preferred language to personalize your spiritual journey
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-12">
           {languages.map((language) => (
             <Card
               key={language.code}
-              className={`p-6 cursor-pointer transition-all duration-300 hover:shadow-gentle border-2 ${
+              className={`p-4 sm:p-6 cursor-pointer transition-all duration-300 hover:shadow-gentle border-2 active:scale-95 ${
                 selectedLanguage === language.code
                   ? 'border-spiritual-purple bg-spiritual-light shadow-spiritual'
                   : 'border-border hover:border-spiritual-purple/50'

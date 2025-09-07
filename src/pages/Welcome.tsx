@@ -38,25 +38,25 @@ const Welcome = () => {
           </div>
         </div>
 
-        <h1 className="text-6xl font-bold mb-6 bg-gradient-spiritual bg-clip-text text-transparent">
+        <h1 className="text-4xl sm:text-6xl font-bold mb-6 bg-gradient-spiritual bg-clip-text text-transparent">
           Spiritual Harmony
         </h1>
         
-        <p className="text-xl text-muted-foreground mb-4 leading-relaxed">
+        <p className="text-lg sm:text-xl text-muted-foreground mb-4 leading-relaxed">
           Discover inner peace through sacred sounds and healing frequencies
         </p>
         
-        <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg text-muted-foreground mb-12 max-w-2xl mx-auto px-4">
           Welcome to your sanctuary of spiritual music. Let these divine melodies 
           guide you on a journey of meditation, healing, and enlightenment.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col gap-4 justify-center items-center px-4">
           <Button 
             variant="spiritual" 
             size="lg"
             onClick={() => navigate('/language')}
-            className="group relative overflow-hidden"
+            className="group relative overflow-hidden w-full sm:w-auto min-h-[56px]"
           >
             <Heart className="w-5 h-5 mr-2 group-hover:animate-pulse" />
             Begin Your Journey
@@ -67,6 +67,7 @@ const Welcome = () => {
             variant="peaceful" 
             size="lg"
             onClick={() => navigate('/playlist')}
+            className="w-full sm:w-auto min-h-[56px]"
           >
             <Music className="w-5 h-5 mr-2" />
             Explore Music
