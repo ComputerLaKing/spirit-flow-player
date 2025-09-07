@@ -19,10 +19,14 @@ const LanguageSelection = () => {
   const navigate = useNavigate();
   const [selectedLanguage, setSelectedLanguage] = useState('en');
 
-  const handleContinue = () => {
+  const handleLanguageSelect = (languageCode: string) => {
+    setSelectedLanguage(languageCode);
     // Store selected language in localStorage
-    localStorage.setItem('spiritual-language', selectedLanguage);
-    navigate('/playlist');
+    localStorage.setItem('spiritual-language', languageCode);
+    // Navigate immediately to playlist
+    setTimeout(() => {
+      navigate('/playlist');
+    }, 300); // Small delay for visual feedback
   };
 
   return (
@@ -52,7 +56,7 @@ const LanguageSelection = () => {
                   ? 'border-spiritual-purple bg-spiritual-light shadow-spiritual'
                   : 'border-border hover:border-spiritual-purple/50'
               }`}
-              onClick={() => setSelectedLanguage(language.code)}
+              onClick={() => handleLanguageSelect(language.code)}
             >
               <div className="text-center">
                 <div className="text-3xl mb-3">{language.flag}</div>
@@ -74,15 +78,9 @@ const LanguageSelection = () => {
         </div>
 
         <div className="text-center">
-          <Button 
-            variant="spiritual" 
-            size="lg"
-            onClick={handleContinue}
-            className="group"
-          >
-            Continue to Playlist
-            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <p className="text-muted-foreground">
+            Click on your preferred language to continue
+          </p>
         </div>
       </div>
     </div>
