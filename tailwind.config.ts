@@ -57,6 +57,24 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        spiritual: {
+          purple: "hsl(var(--spiritual-purple))",
+          light: "hsl(var(--spiritual-light))",
+          gold: "hsl(var(--spiritual-gold))",
+          blue: "hsl(var(--spiritual-blue))",
+        },
+      },
+      backgroundImage: {
+        'gradient-spiritual': 'var(--gradient-spiritual)',
+        'gradient-peaceful': 'var(--gradient-peaceful)',
+        'gradient-sunset': 'var(--gradient-sunset)',
+      },
+      boxShadow: {
+        'spiritual': 'var(--shadow-spiritual)',
+        'gentle': 'var(--shadow-gentle)',
+      },
+      transitionTimingFunction: {
+        'spiritual': 'var(--transition-spiritual)',
       },
       borderRadius: {
         lg: "var(--radius)",
