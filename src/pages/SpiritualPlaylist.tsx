@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Play, Pause, Download, Heart, Clock, User, SkipForward } from "lucide-react";
+import { Play, Pause, Download, Heart, Clock, User, SkipForward, ArrowLeft, Globe } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import meditation1 from "@/assets/meditation-1.jpg";
 import chanting2 from "@/assets/chanting-2.jpg";
 import healing3 from "@/assets/healing-3.jpg";
@@ -51,6 +52,7 @@ const spiritualTracks: Track[] = [
 ];
 
 const SpiritualPlaylist = () => {
+  const navigate = useNavigate();
   const [currentTrackIndex, setCurrentTrackIndex] = useState<number | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
@@ -130,6 +132,27 @@ const SpiritualPlaylist = () => {
       {/* Header */}
       <div className="bg-gradient-spiritual text-white py-12 sm:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          {/* Navigation */}
+          <div className="flex justify-between items-center mb-8">
+            <Button 
+              variant="ghost" 
+              onClick={() => navigate('/')}
+              className="text-white hover:bg-white/10 border border-white/20"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Home
+            </Button>
+            
+            <Button 
+              variant="outline" 
+              onClick={() => navigate('/')}
+              className="text-white border-white/20 hover:bg-white/10"
+            >
+              <Globe className="w-4 h-4 mr-2" />
+              Change Language
+            </Button>
+          </div>
+          
           <div className="text-center">
             <h1 className="text-3xl sm:text-5xl font-bold mb-4">
               Sacred Sound Library
