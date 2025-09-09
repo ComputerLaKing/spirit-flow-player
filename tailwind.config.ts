@@ -58,10 +58,10 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         spiritual: {
-          purple: "hsl(var(--spiritual-purple))",
+          orange: "hsl(var(--spiritual-orange))",
           light: "hsl(var(--spiritual-light))",
           gold: "hsl(var(--spiritual-gold))",
-          blue: "hsl(var(--spiritual-blue))",
+          yellow: "hsl(var(--spiritual-yellow))",
         },
       },
       backgroundImage: {

@@ -8,49 +8,49 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Spiritual color palette */
-    --background: 245 30% 96%;
-    --foreground: 260 15% 25%;
+    /* Spiritual color palette - Yellow & Orange theme */
+    --background: 48 100% 97%;
+    --foreground: 25 20% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 260 15% 25%;
+    --card: 50 100% 99%;
+    --card-foreground: 25 20% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 260 15% 25%;
+    --popover: 50 100% 99%;
+    --popover-foreground: 25 20% 15%;
 
-    --primary: 260 70% 45%;
+    --primary: 35 90% 55%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 280 25% 85%;
-    --secondary-foreground: 260 15% 25%;
+    --secondary: 48 85% 88%;
+    --secondary-foreground: 25 20% 15%;
 
-    --muted: 280 15% 92%;
-    --muted-foreground: 260 10% 55%;
+    --muted: 48 70% 94%;
+    --muted-foreground: 25 15% 50%;
 
-    --accent: 45 85% 65%;
-    --accent-foreground: 260 15% 25%;
+    --accent: 25 95% 65%;
+    --accent-foreground: 48 100% 97%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 280 15% 88%;
-    --input: 280 15% 88%;
-    --ring: 260 70% 45%;
+    --border: 48 60% 90%;
+    --input: 48 60% 90%;
+    --ring: 35 90% 55%;
 
     /* Spiritual design tokens */
-    --spiritual-purple: 260 70% 45%;
-    --spiritual-light: 280 25% 85%;
-    --spiritual-gold: 45 85% 65%;
-    --spiritual-blue: 220 60% 50%;
+    --spiritual-orange: 25 95% 65%;
+    --spiritual-light: 48 85% 88%;
+    --spiritual-gold: 45 95% 70%;
+    --spiritual-yellow: 52 88% 72%;
     
     /* Gradients */
-    --gradient-spiritual: linear-gradient(135deg, hsl(260 70% 45%), hsl(220 60% 50%));
-    --gradient-peaceful: linear-gradient(180deg, hsl(280 25% 85%), hsl(245 30% 96%));
-    --gradient-sunset: linear-gradient(135deg, hsl(45 85% 65%), hsl(260 70% 45%));
+    --gradient-spiritual: linear-gradient(135deg, hsl(35 90% 55%), hsl(25 95% 65%));
+    --gradient-peaceful: linear-gradient(180deg, hsl(48 85% 88%), hsl(48 100% 97%));
+    --gradient-sunset: linear-gradient(135deg, hsl(45 95% 70%), hsl(25 95% 65%));
     
     /* Shadows */
-    --shadow-spiritual: 0 10px 30px -10px hsl(260 70% 45% / 0.3);
-    --shadow-gentle: 0 4px 20px -4px hsl(260 15% 25% / 0.1);
+    --shadow-spiritual: 0 10px 30px -10px hsl(25 95% 65% / 0.3);
+    --shadow-gentle: 0 4px 20px -4px hsl(25 20% 15% / 0.1);
     
     /* Animations */
     --transition-spiritual: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
