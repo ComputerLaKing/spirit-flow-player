@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Play, Pause, Download, Heart, Clock, User, SkipForward, ArrowLeft, Globe } from "lucide-react";
+import { Play, Pause, Download, Heart, Clock, User, SkipForward, ArrowLeft, Globe, Plus } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
+import AudioUploader from "@/components/AudioUploader";
 import meditation1 from "@/assets/meditation-1.jpg";
 import chanting2 from "@/assets/chanting-2.jpg";
 import healing3 from "@/assets/healing-3.jpg";
@@ -53,10 +55,16 @@ const spiritualTracks: Track[] = [
 
 const SpiritualPlaylist = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [currentTrackIndex, setCurrentTrackIndex] = useState<number | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
+  const [showUploader, setShowUploader] = useState(false);
+  const [customTracks, setCustomTracks] = useState<Track[]>([]);
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Combine default tracks with uploaded tracks
+  const allTracks = [...spiritualTracks, ...customTracks];
 
   // Auto-play next track when current track ends
   useEffect(() => {
@@ -75,7 +83,7 @@ const SpiritualPlaylist = () => {
     if (currentTrackIndex === null) return;
     
     const nextIndex = currentTrackIndex + 1;
-    if (nextIndex < spiritualTracks.length) {
+    if (nextIndex < allTracks.length) {
       setCurrentTrackIndex(nextIndex);
       setIsPlaying(true);
       // Audio will start playing due to useEffect below
@@ -91,7 +99,7 @@ const SpiritualPlaylist = () => {
     const audio = audioRef.current;
     if (!audio || currentTrackIndex === null) return;
 
-    const currentTrack = spiritualTracks[currentTrackIndex];
+    const currentTrack = allTracks[currentTrackIndex];
     audio.src = currentTrack.audioUrl;
     
     if (isPlaying) {
@@ -102,7 +110,7 @@ const SpiritualPlaylist = () => {
   }, [currentTrackIndex, isPlaying]);
 
   const handlePlayPause = (trackId: number) => {
-    const trackIndex = spiritualTracks.findIndex(track => track.id === trackId);
+    const trackIndex = allTracks.findIndex(track => track.id === trackId);
     
     if (currentTrackIndex === trackIndex) {
       // Same track - toggle play/pause
@@ -122,6 +130,27 @@ const SpiritualPlaylist = () => {
       newFavorites.add(trackId);
     }
     setFavorites(newFavorites);
+  };
+
+  const handleAudioUploaded = (url: string, file: File) => {
+    const newTrack: Track = {
+      id: Date.now(), // Simple ID generation
+      title: file.name.replace(/\.[^/.]+$/, ""), // Remove file extension
+      artist: "User Upload",
+      duration: "Unknown", // We could calculate this with audio metadata
+      image: healing3, // Default image, could be customizable
+      category: "Custom",
+      description: "User uploaded track",
+      audioUrl: url
+    };
+    
+    setCustomTracks(prev => [...prev, newTrack]);
+    setShowUploader(false);
+    
+    toast({
+      title: "Track added!",
+      description: `${newTrack.title} has been added to your playlist.`,
+    });
   };
 
   return (
@@ -168,16 +197,34 @@ const SpiritualPlaylist = () => {
       {/* Playlist Content */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
         <div className="mb-6 sm:mb-8">
-          <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
-            Featured Tracks
-          </h2>
-          <p className="text-sm sm:text-base text-muted-foreground">
-            Begin your spiritual journey with these transformative sounds
-          </p>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
+                Your Playlist ({allTracks.length} tracks)
+              </h2>
+              <p className="text-sm sm:text-base text-muted-foreground">
+                Begin your spiritual journey with these transformative sounds
+              </p>
+            </div>
+            <Button
+              variant="spiritual"
+              onClick={() => setShowUploader(!showUploader)}
+              className="w-full sm:w-auto"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Add Your Music
+            </Button>
+          </div>
+          
+          {showUploader && (
+            <div className="mb-6">
+              <AudioUploader onAudioUploaded={handleAudioUploaded} />
+            </div>
+          )}
         </div>
 
         <div className="grid gap-6">
-          {spiritualTracks.map((track, index) => (
+          {allTracks.map((track, index) => (
             <Card 
               key={track.id} 
               className="p-4 sm:p-6 hover:shadow-spiritual transition-all duration-300 border border-spiritual-purple/10"
@@ -246,7 +293,7 @@ const SpiritualPlaylist = () => {
                     <Button
                       variant="ghost"
                       onClick={playNextTrack}
-                      disabled={currentTrackIndex === null || currentTrackIndex >= spiritualTracks.length - 1}
+                      disabled={currentTrackIndex === null || currentTrackIndex >= allTracks.length - 1}
                       className="min-h-[48px] min-w-[48px]"
                       title="Next Track"
                     >
