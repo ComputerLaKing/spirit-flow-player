@@ -161,11 +161,11 @@ const SpiritualPlaylist = () => {
           
           <div className="text-center">
             <h1 className="text-3xl sm:text-5xl font-bold mb-4">
-              Sacred Sound Library
+              Sharanavarathri Audio Collection
             </h1>
             <p className="text-lg sm:text-xl opacity-90 max-w-2xl mx-auto px-4">
-              Immerse yourself in carefully curated spiritual music for meditation, 
-              healing, and inner transformation
+              Sacred devotional music and spiritual discourses celebrating 
+              Adi Shankara's teachings and the divine Golu Utsava tradition
             </p>
           </div>
         </div>
@@ -177,10 +177,10 @@ const SpiritualPlaylist = () => {
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4">
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
-                Your Playlist ({allTracks.length} tracks)
+                Festival Audio Collection ({allTracks.length} tracks)
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground">
-                Begin your spiritual journey with these transformative sounds
+                Devotional songs, bhajans, and spiritual discourses for the celebration
               </p>
             </div>
             <Button
@@ -189,7 +189,7 @@ const SpiritualPlaylist = () => {
               className="w-full sm:w-auto"
             >
               <Plus className="w-4 h-4 mr-2" />
-              Upload Music
+              Add Festival Audio
             </Button>
           </div>
         </div>
@@ -292,14 +292,14 @@ const SpiritualPlaylist = () => {
         {/* Call to Action */}
         <div className="text-center mt-16 p-12 bg-gradient-sunset rounded-2xl shadow-spiritual">
           <h3 className="text-3xl font-bold text-white mb-4">
-            Discover More Sacred Sounds
+            Explore More Festival Content
           </h3>
           <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-            Join our community of spiritual seekers and unlock access to hundreds 
-            of premium meditation tracks, healing frequencies, and guided journeys.
+            Discover more devotional music, traditional bhajans, and spiritual discourses 
+            celebrating the life and teachings of Adi Shankara during this sacred festival.
           </p>
           <Button variant="golden" size="lg">
-            Explore Premium Library
+            View Exhibition Gallery
           </Button>
         </div>
       </div>

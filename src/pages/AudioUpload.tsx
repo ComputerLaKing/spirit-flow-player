@@ -98,10 +98,11 @@ const AudioUpload = () => {
           
           <div className="text-center">
             <h1 className="text-3xl sm:text-5xl font-bold mb-4">
-              Upload Your Sacred Sounds
+              Upload Festival Audio
             </h1>
             <p className="text-lg sm:text-xl opacity-90 max-w-2xl mx-auto px-4">
-              Share your spiritual music collection by organizing them into categories
+              Contribute to the Sharanavarathri Golu Utsava collection with devotional music, 
+              bhajans, and spiritual content celebrating Adi Shankara's legacy
             </p>
           </div>
         </div>

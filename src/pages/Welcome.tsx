@@ -59,16 +59,17 @@ const Welcome = () => {
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-bold mb-6 bg-gradient-spiritual bg-clip-text text-transparent">
-            Spiritual Harmony
+            Sharanavarathri Golu Utsava
           </h1>
           
           <p className="text-lg sm:text-xl text-muted-foreground mb-4 leading-relaxed">
-            Discover inner peace through sacred sounds and healing frequencies
+            Experience the divine celebration of Shankara Vijayam Exhibition
           </p>
           
           <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto px-4">
-            Welcome to your sanctuary of spiritual music. Let these divine melodies 
-            guide you on a journey of meditation, healing, and enlightenment.
+            Welcome to the sacred festival showcasing the life and teachings of Adi Shankara. 
+            Immerse yourself in devotional music, spiritual discourses, and the traditional Golu display 
+            celebrating our rich cultural heritage.
           </p>
         </div>
 
@@ -132,7 +133,7 @@ const Welcome = () => {
         </div>
 
         <div className="text-center text-sm text-muted-foreground">
-          ✨ Curated spiritual music for meditation, healing & transformation ✨
+          ✨ Celebrating Adi Shankara's legacy through music, culture & devotion ✨
         </div>
       </div>
     </div>
