@@ -6,11 +6,11 @@ import { useState } from "react";
 import spiritualHero from "@/assets/spiritual-hero.jpg";
 
 const languages = [
-  { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ', flag: '🇮🇳' },
-  { code: 'en', name: 'English', native: 'English', flag: '🇺🇸' },
-  { code: 'hi', name: 'Hindi', native: 'हिंदी', flag: '🇮🇳' },
-  { code: 'ta', name: 'Tamil', native: 'தமிழ்', flag: '🇮🇳' },
-  { code: 'te', name: 'Telugu', native: 'తెలుగు', flag: '🇮🇳' },
+  { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ' },
+  { code: 'en', name: 'English', native: 'English' },
+  { code: 'hi', name: 'Hindi', native: 'हिंदी' },
+  { code: 'ta', name: 'Tamil', native: 'தமிழ்' },
+  { code: 'te', name: 'Telugu', native: 'తెలుగు' },
 ];
 
 const Welcome = () => {
@@ -100,7 +100,6 @@ const Welcome = () => {
                 onClick={() => handleLanguageSelect(language.code)}
               >
                 <div className="text-center">
-                  <div className="text-2xl mb-2">{language.flag}</div>
                   <h3 className="font-semibold text-foreground text-sm mb-1">
                     {language.native}
                   </h3>
@@ -121,17 +120,6 @@ const Welcome = () => {
 
         {/* Action Buttons */}
         <div className="flex flex-col gap-4 justify-center items-center px-4 mb-8">
-          <Button 
-            variant="spiritual" 
-            size="lg"
-            onClick={() => navigate('/playlist')}
-            className="group relative overflow-hidden w-full sm:w-auto min-h-[56px]"
-          >
-            <Heart className="w-5 h-5 mr-2 group-hover:animate-pulse" />
-            Start Listening
-            <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-          </Button>
-          
           <Button 
             variant="peaceful" 
             size="lg"
