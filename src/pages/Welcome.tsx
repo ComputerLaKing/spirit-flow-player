@@ -6,14 +6,11 @@ import { useState } from "react";
 import spiritualHero from "@/assets/spiritual-hero.jpg";
 
 const languages = [
+  { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ', flag: '🇮🇳' },
   { code: 'en', name: 'English', native: 'English', flag: '🇺🇸' },
-  { code: 'es', name: 'Spanish', native: 'Español', flag: '🇪🇸' },
-  { code: 'fr', name: 'French', native: 'Français', flag: '🇫🇷' },
-  { code: 'de', name: 'German', native: 'Deutsch', flag: '🇩🇪' },
   { code: 'hi', name: 'Hindi', native: 'हिंदी', flag: '🇮🇳' },
-  { code: 'zh', name: 'Chinese', native: '中文', flag: '🇨🇳' },
-  { code: 'ja', name: 'Japanese', native: '日本語', flag: '🇯🇵' },
-  { code: 'pt', name: 'Portuguese', native: 'Português', flag: '🇧🇷' },
+  { code: 'ta', name: 'Tamil', native: 'தமிழ்', flag: '🇮🇳' },
+  { code: 'te', name: 'Telugu', native: 'తెలుగు', flag: '🇮🇳' },
 ];
 
 const Welcome = () => {
