@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import SpiritualPlaylist from "./pages/SpiritualPlaylist";
+import AudioUpload from "./pages/AudioUpload";
 import Quiz from "./pages/Quiz";
 import NotFound from "./pages/NotFound";
 
@@ -19,6 +20,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/playlist" element={<SpiritualPlaylist />} />
+          <Route path="/upload" element={<AudioUpload />} />
           <Route path="/quiz" element={<Quiz />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

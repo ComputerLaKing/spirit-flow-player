@@ -4,7 +4,6 @@ import { Play, Pause, Download, Heart, Clock, User, SkipForward, ArrowLeft, Glob
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import AudioUploader from "@/components/AudioUploader";
 import meditation1 from "@/assets/meditation-1.jpg";
 import chanting2 from "@/assets/chanting-2.jpg";
 import healing3 from "@/assets/healing-3.jpg";
@@ -59,12 +58,10 @@ const SpiritualPlaylist = () => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState<number | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
-  const [showUploader, setShowUploader] = useState(false);
-  const [customTracks, setCustomTracks] = useState<Track[]>([]);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Combine default tracks with uploaded tracks
-  const allTracks = [...spiritualTracks, ...customTracks];
+  // Use default tracks
+  const allTracks = spiritualTracks;
 
   // Auto-play next track when current track ends
   useEffect(() => {
@@ -132,26 +129,6 @@ const SpiritualPlaylist = () => {
     setFavorites(newFavorites);
   };
 
-  const handleAudioUploaded = (url: string, file: File) => {
-    const newTrack: Track = {
-      id: Date.now(), // Simple ID generation
-      title: file.name.replace(/\.[^/.]+$/, ""), // Remove file extension
-      artist: "User Upload",
-      duration: "Unknown", // We could calculate this with audio metadata
-      image: healing3, // Default image, could be customizable
-      category: "Custom",
-      description: "User uploaded track",
-      audioUrl: url
-    };
-    
-    setCustomTracks(prev => [...prev, newTrack]);
-    setShowUploader(false);
-    
-    toast({
-      title: "Track added!",
-      description: `${newTrack.title} has been added to your playlist.`,
-    });
-  };
 
   return (
     <div className="min-h-screen bg-gradient-peaceful">
@@ -208,19 +185,13 @@ const SpiritualPlaylist = () => {
             </div>
             <Button
               variant="spiritual"
-              onClick={() => setShowUploader(!showUploader)}
+              onClick={() => navigate('/upload')}
               className="w-full sm:w-auto"
             >
               <Plus className="w-4 h-4 mr-2" />
-              Add Your Music
+              Upload Music
             </Button>
           </div>
-          
-          {showUploader && (
-            <div className="mb-6">
-              <AudioUploader onAudioUploaded={handleAudioUploaded} />
-            </div>
-          )}
         </div>
 
         <div className="grid gap-6">
