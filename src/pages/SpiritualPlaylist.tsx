@@ -22,34 +22,54 @@ interface Track {
 const spiritualTracks: Track[] = [
   {
     id: 1,
-    title: "Deep Meditation Flow",
-    artist: "Sacred Sounds",
-    duration: "15:30",
+    title: "Shankara Bhujangam",
+    artist: "Traditional Devotional",
+    duration: "8:45",
     image: meditation1,
-    category: "Meditation",
-    description: "Guided meditation with Tibetan bowls and nature sounds",
-    audioUrl: "https://www.soundjay.com/misc/sounds/meditation-chime.mp3" // Demo audio
+    category: "Devotional",
+    description: "Sacred hymn praising Adi Shankara's divine form and teachings",
+    audioUrl: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
   },
   {
     id: 2,
-    title: "Om Mani Padme Hum",
-    artist: "Zen Masters",
-    duration: "21:45",
+    title: "Gowri Ganesha Bhajans",
+    artist: "Festival Singers",
+    duration: "12:30",
     image: chanting2,
-    category: "Chanting",
-    description: "Traditional Sanskrit mantras for compassion and wisdom",
-    audioUrl: "https://www.soundjay.com/misc/sounds/chanting-meditation.mp3" // Demo audio
+    category: "Bhajans",
+    description: "Traditional Golu festival songs celebrating divine mother and remover of obstacles",
+    audioUrl: "https://sample-videos.com/zip/10/mp3/mp3-10s.mp3"
   },
   {
     id: 3,
-    title: "432Hz Healing Frequencies",
-    artist: "Sound Healers",
-    duration: "18:20",
+    title: "Advaita Vedanta Discourse",
+    artist: "Spiritual Teacher",
+    duration: "15:20",
     image: healing3,
-    category: "Healing",
-    description: "Pure healing tones for chakra alignment and restoration",
-    audioUrl: "https://www.soundjay.com/misc/sounds/healing-frequencies.mp3" // Demo audio
+    category: "Discourse",
+    description: "Enlightening discourse on Shankara's non-dualistic philosophy",
+    audioUrl: "https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"
   },
+  {
+    id: 4,
+    title: "Jagadguru Stotram",
+    artist: "Temple Priests",
+    duration: "6:15",
+    image: meditation1,
+    category: "Stotrams",
+    description: "Sacred verses honoring Adi Shankara as the world teacher",
+    audioUrl: "https://www.kozco.com/tech/organfinale.mp3"
+  },
+  {
+    id: 5,
+    title: "Navratri Golu Songs",
+    artist: "Cultural Group",
+    duration: "10:45",
+    image: chanting2,
+    category: "Festival",
+    description: "Traditional songs celebrating the divine feminine during Golu display",
+    audioUrl: "https://file-examples.com/storage/fead87a7ff166b9dc717cdb/2017/11/file_example_MP3_700KB.mp3"
+  }
 ];
 
 const SpiritualPlaylist = () => {
